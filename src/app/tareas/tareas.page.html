@@ -9,12 +9,24 @@
    <ion-item>
     <ion-input label="Nueva Tarea" [(ngModel)]="nuevaTarea"></ion-input>
 
-    <ion-button (click)="guardar()">Agregar</ion-button>
+    <ion-button (click)="guardar()" [disabled]="nuevaTarea.length===0">Agregar</ion-button>
   </ion-item>
 
  @for (tarea of tareas; track $index) {
-<ion-item>
-    {{tarea}}
-</ion-item>
+    <ion-item>
+      <ion-label>{{tarea}}</ion-label>
+      <ion-button>
+        <ion-icon name="trash-outline" (click)="eliminar(tarea)"></ion-icon>
+      </ion-button>
+     
+    </ion-item>
 }
+@if (tareas.length=== 0){
+  <ion-card>
+  <ion-card-content> 
+    No hay tareas pendientes
+  </ion-card-content>
+</ion-card>
+}
+
 </ion-content>
